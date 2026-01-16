@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nihongo Trainer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app">
+    <h1>🇯🇵 Nihongo Trainer</h1>
+
+    <select id="categorySelect" onchange="changeCategory()">
+        <option value="all">All</option>
+        <option value="Month">Months</option>
+        <option value="Day">Days</option>
+        <option value="Greeting">Greetings</option>
+    </select>
+
+    <div class="card">
+        <p id="category"></p>
+        <p id="question"></p>
+
+        <input type="text" id="answer" placeholder="Type answer">
+
+            <div class="buttons">
+                <button onclick="previousQuestion()">⬅ Previous</button>
+                <button onclick="checkAnswer()">✅ Check</button>
+                <button onclick="nextQuestion()">➡ Next</button>            
+                <button onclick="playSlowPronunciation()">🐢 Slow Pronounce</button>
+                <button onclick="playPronunciation()">🔊 Pronounce</button>
+                <button onclick="resetProgress()">Reset Progress</button>
+
+            </div>
+
+
+        <p id="result"></p>
+        <p id="correctAnswer"></p>
+        <p id="progress"></p>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
