@@ -8,6 +8,20 @@
 </head>
 <body>
 
+<header>
+    <div class="header-content">
+        <h1>🇯🇵 Nihongo Trainer</h1>
+        <button class="hamburger" onclick="toggleMenu()">☰</button>
+        <nav id="nav-menu">
+            <a href="months.html">Months</a>
+            <a href="days.html">Days</a>
+            <a href="greetings.html">Greetings</a>
+            <a href="daysofmonth.html">Days of the Month</a>
+            <a href="numbers.html">Numbers</a>
+        </nav>
+    </div>
+</header>
+
 <div class="app">
     <h1>🇯🇵 Nihongo Trainer</h1>
 
@@ -16,6 +30,8 @@
         <option value="Month">Months</option>
         <option value="Day">Days</option>
         <option value="Greeting">Greetings</option>
+        <option value="DayOfMonth">Days of the Month</option>
+        <option value="Number">Numbers 1-1000</option>
     </select>
 
     <div class="card">
@@ -24,16 +40,14 @@
 
         <input type="text" id="answer" placeholder="Type answer">
 
-            <div class="buttons">
-                <button onclick="previousQuestion()">⬅ Previous</button>
-                <button onclick="checkAnswer()">✅ Check</button>
-                <button onclick="nextQuestion()">➡ Next</button>            
-                <button onclick="playSlowPronunciation()">🐢 Slow Pronounce</button>
-                <button onclick="playPronunciation()">🔊 Pronounce</button>
-                <button onclick="resetProgress()">Reset Progress</button>
-
-            </div>
-
+        <div class="buttons">
+            <button onclick="previousQuestion()">⬅ Previous</button>
+            <button onclick="checkAnswer()">✅ Check</button>
+            <button onclick="nextQuestion()">➡ Next</button>            
+            <button onclick="playSlowPronunciation()">🐢 Slow Pronounce</button>
+            <button onclick="playPronunciation()">🔊 Pronounce</button>
+            <button onclick="resetProgress()">Reset Progress</button>
+        </div>
 
         <p id="result"></p>
         <p id="correctAnswer"></p>
@@ -42,5 +56,9 @@
 </div>
 
 <script src="script.js"></script>
+
+<footer>
+    <p>© 2026 マーク — Nihongo Trainer</p>
+</footer>
 </body>
 </html>
