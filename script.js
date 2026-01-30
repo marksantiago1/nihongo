@@ -40,6 +40,22 @@ const allQuestions = [
     { category: "Greeting", question: "Congratulations (casual)", answer: "omedetou", japanese: "おめでとう" },
     { category: "Greeting", question: "Do your best (polite)", answer: "ganbatte kudasai", japanese: "がんばってください" },
     { category: "Greeting", question: "Do your best (casual)", answer: "ganbatte", japanese: "がんばって" },
+    { category: "Greeting", question: "Pleased to meet you too", answer: "douzo yoroshiku onegaishimasu", japanese: "どうぞよろしくお願いします" },
+    { category: "Greeting", question: "Express gratitude before eating your meal", answer: "itadakimasu", japanese: "いただきます" },
+    { category: "Greeting", question: "Express gratitude after eating your meal", answer: "gochisousama deshita", japanese: "ごちそうさまでした" },
+    { category: "Greeting", question: "Thank you for your effort", answer: "otsukaresama deshita", japanese: "おつかれさまでした" },
+    { category: "Greeting", question: "I'll go ahead", answer: "osaki ni shitsureishimasu", japanese: "お先に失礼します" },
+    { category: "Greeting", question: "Good morning", answer: "ohayou gozaimasu", japanese: "おはようございます" },
+    { category: "Greeting", question: "Yes", answer: "hai", japanese: "はい" },
+    { category: "Greeting", question: "No", answer: "iie", japanese: "いいえ" },
+    { category: "Greeting", question: "Excuse me / Hello (to get attention)", answer: "shitsureishimasu", japanese: "失礼します" },
+    { category: "Greeting", question: "Goodbye", answer: "sayonara", japanese: "さようなら" },
+    { category: "Greeting", question: "See you later", answer: "ja ne / mata ne", japanese: "じゃね / またね" },
+    { category: "Greeting", question: "How are you?", answer: "ogenki desu ka?", japanese: "お元気ですか？" },
+    { category: "Greeting", question: "I'm fine", answer: "genki desu", japanese: "元気です" },
+    { category: "Greeting", question: "I don't understand", answer: "wakarimasen", japanese: "わかりません" },
+    { category: "Greeting", question: "Please", answer: "onegaishimasu", japanese: "お願いします" },
+    { category: "Greeting", question: "Delicious", answer: "oishii", japanese: "おいしい" },
 
     // DAYS OF THE MONTH (1-31)
 ...Array.from({ length: 31 }, (_, i) => {
@@ -87,7 +103,16 @@ const allQuestions = [
         const n = i + 1;
         const japaneseNumeral = numberToJapanese(n);
         return { category: "Number", question: `${n}`, answer: japaneseNumeral.romaji, japanese: japaneseNumeral.kana };
-    })
+    }),
+
+    // SELF INTRODUCTION
+    { category: "SELF INTRODUCTION", question: "My name is", answer: "watashi no namae wa ___ desu", japanese: "わたしの名前は ___ です" },
+    { category: "SELF INTRODUCTION", question: "My birthday is", answer: "watashi no tanjoubi wa ___ desu", japanese: "わたしの誕生日は ___ です" },
+    { category: "SELF INTRODUCTION", question: "I’m ___ years old", answer: "watashi wa ___ sai desu", japanese: "わたしは ___ さいです" },
+    { category: "SELF INTRODUCTION", question: "I live in", answer: "watashi wa ___ ni sunde imasu", japanese: "わたしは ___ に住んでいます" },
+    { category: "SELF INTRODUCTION", question: "My hobby is", answer: "watashi no shumi wa ___ suru koto desu", japanese: "わたしの趣味は ___ することです" },
+    { category: "SELF INTRODUCTION", question: "My work is", answer: "watashi wa ___ desu", japanese: "わたしは ___ です" },
+    { category: "SELF INTRODUCTION", question: "My dream is", answer: "watashi no yume wa ___ ni naritai desu", japanese: "わたしの夢は ___ になりたいです" }
 ];
 
 // Helper: Convert numbers 1–1000 to Japanese
@@ -177,7 +202,17 @@ function checkAnswer() {
     const kana = `<b>${filteredQuestions[current].japanese}</b>`;
     const english = `<b>${filteredQuestions[current].question}</b>`; 
 
-    if (user === correct) {
+    let isCorrect = false;
+    if (filteredQuestions[current].category === "SELF INTRODUCTION") {
+        // Use regex pattern matching: replace "___" with ".*" for flexible matching
+        const pattern = correct.replace(/___/g, ".*");
+        const regex = new RegExp(`^${pattern}$`, 'i');
+        isCorrect = regex.test(user);
+    } else {
+        isCorrect = user === correct;
+    }
+
+    if (isCorrect) {
         document.getElementById("result").innerHTML = `✅ Correct! ${romaji} → ${kana} → ${english}`;
         document.getElementById("result").style.color = "green";
         document.getElementById("correctAnswer").innerHTML = "";
