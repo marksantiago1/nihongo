@@ -1,5 +1,53 @@
 // Reviewer Data and Functionality
 
+const quizData = {
+    GREETINGS: [
+        { question: "Hello", answer: "konnichiwa", japanese: "こんにちは" },
+        { question: "Good evening", answer: "konbanwa", japanese: "こんばんは" },
+        { question: "Nice to meet you", answer: "hajimemashite", japanese: "はじめまして" },
+        { question: "Good night", answer: "oyasumi nasai", japanese: "おやすみなさい" },
+        { question: "Thank you (polite)", answer: "arigatou gozaimasu", japanese: "ありがとうございます" },
+        { question: "You're welcome", answer: "do itashimashite", japanese: "どういたしまして" },
+        { question: "Excuse me / I'm sorry", answer: "sumimasen", japanese: "すみません" },
+        { question: "I'm sorry", answer: "gomen nasai", japanese: "ごめんなさい" },
+        { question: "I'm leaving", answer: "itte kimasu", japanese: "いってきます" },
+        { question: "Please treat me well", answer: "yoroshiku onegaishimasu", japanese: "よろしくお願いします" },
+        { question: "Welcome home", answer: "okaerinasai", japanese: "おかえりなさい" },
+        { question: "I'm home!", answer: "tadaima", japanese: "ただいま" },
+        { question: "Have a good day / Take care", answer: "itterasshai", japanese: "いってらっしゃい" },
+        { question: "Congratulations (polite)", answer: "omedetou gozaimasu", japanese: "おめでとうございます" },
+        { question: "Congratulations (casual)", answer: "omedetou", japanese: "おめでとう" },
+        { question: "Do your best (polite)", answer: "ganbatte kudasai", japanese: "がんばってください" },
+        { question: "Do your best (casual)", answer: "ganbatte", japanese: "がんばって" },
+        { question: "Pleased to meet you too", answer: "douzo yoroshiku onegaishimasu", japanese: "どうぞよろしくお願いします" },
+        { question: "Express gratitude before eating your meal", answer: "itadakimasu", japanese: "いただきます" },
+        { question: "Express gratitude after eating your meal", answer: "gochisousama deshita", japanese: "ごちそうさまでした" },
+        { question: "Thank you for your effort", answer: "otsukaresama deshita", japanese: "おつかれさまでした" },
+        { question: "I'll go ahead", answer: "osaki ni shitsureishimasu", japanese: "お先に失礼します" },
+        { question: "Good morning", answer: "ohayou gozaimasu", japanese: "おはようございます" },
+        { question: "Yes", answer: "hai", japanese: "はい" },
+        { question: "No", answer: "iie", japanese: "いいえ" },
+        { question: "Excuse me / Hello (to get attention)", answer: "shitsureishimasu", japanese: "失礼します" },
+        { question: "Goodbye", answer: "sayonara", japanese: "さようなら" },
+        { question: "See you later", answer: "ja ne / mata ne", japanese: "じゃね / またね" },
+        { question: "How are you?", answer: "ogenki desu ka?", japanese: "お元気ですか？" },
+        { question: "I'm fine", answer: "genki desu", japanese: "元気です" },
+        { question: "I don't understand", answer: "wakarimasen", japanese: "わかりません" },
+        { question: "Please", answer: "onegaishimasu", japanese: "お願いします" },
+        { question: "Delicious", answer: "oishii", japanese: "おいしい" }
+    ],
+
+    SELF_INTRODUCTION: [
+        { question: "My name is", answer: "watashi no namae wa ___ desu", japanese: "わたしの名前は ___ です" },
+        { question: "My birthday is", answer: "watashi no tanjoubi wa ___ desu", japanese: "わたしの誕生日は ___ です" },
+        { question: "I’m ___ years old", answer: "watashi wa ___ sai desu", japanese: "わたしは ___ さいです" },
+        { question: "I live in", answer: "watashi wa ___ ni sunde imasu", japanese: "わたしは ___ に住んでいます" },
+        { question: "My hobby is", answer: "watashi no shumi wa ___ suru koto desu", japanese: "わたしの趣味は ___ することです" },
+        { question: "My work is", answer: "watashi wa ___ desu", japanese: "わたしは ___ です" },
+        { question: "My dream is", answer: "watashi no yume wa ___ ni naritai desu", japanese: "わたしの夢は ___ になりたいです" }
+    ]
+};
+
 // Months Data
 const monthsData = [
     {
@@ -297,13 +345,197 @@ const greetingsData = [
         explanation: "Casual encouragement.",
         example: "Ganbatte, kitto dekiru yo. (Do your best, you can definitely do it.)",
         keyVocab: ["kitto - surely", "dekiru - can do", "yo - emphasis particle"]
+    },
+    {
+        english: "Pleased to meet you too",
+        romaji: "douzo yoroshiku onegaishimasu",
+        kana: "どうぞよろしくお願いします",
+        explanation: "Response to 'Nice to meet you', meaning please treat me well.",
+        example: "Hajimemashite. Douzo yoroshiku onegaishimasu. (Nice to meet you. Pleased to meet you too.)",
+        keyVocab: ["hajimemashite - nice to meet you"]
+    },
+    {
+        english: "Express gratitude before eating your meal",
+        romaji: "itadakimasu",
+        kana: "いただきます",
+        explanation: "Said before starting a meal to express gratitude for the food.",
+        example: "Itadakimasu. (Expressing gratitude before eating.)",
+        keyVocab: []
+    },
+    {
+        english: "Express gratitude after eating your meal",
+        romaji: "gochisousama deshita",
+        kana: "ごちそうさまでした",
+        explanation: "Said after finishing a meal to thank the host or chef.",
+        example: "Gochisousama deshita. (Thank you for the meal.)",
+        keyVocab: []
+    },
+    {
+        english: "I'll go now and will be back",
+        romaji: "ittekimasu",
+        kana: "いってきます",
+        explanation: "Said when leaving home, meaning I'll go and come back.",
+        example: "Ittekimasu. (I'm leaving now.)",
+        keyVocab: []
+    },
+    {
+        english: "Please go and come back",
+        romaji: "itterasshai",
+        kana: "いってらっしゃい",
+        explanation: "Response to 'ittekimasu', wishing someone a safe trip.",
+        example: "Itterasshai. (Take care, go and come back safely.)",
+        keyVocab: []
+    },
+    {
+        english: "I'm home",
+        romaji: "tadaima",
+        kana: "ただいま",
+        explanation: "Said upon returning home.",
+        example: "Tadaima. (I'm home.)",
+        keyVocab: []
+    },
+    {
+        english: "Welcome back",
+        romaji: "okaerinasai",
+        kana: "おかえりなさい",
+        explanation: "Greeting someone returning home.",
+        example: "Okaerinasai. (Welcome back.)",
+        keyVocab: []
+    },
+    {
+        english: "Thank you for your effort",
+        romaji: "otsukaresama deshita",
+        kana: "おつかれさまでした",
+        explanation: "Said to acknowledge someone's hard work, often at the end of the day.",
+        example: "Otsukaresama deshita. (Thank you for your effort.)",
+        keyVocab: []
+    },
+    {
+        english: "I'll go ahead",
+        romaji: "osaki ni shitsureishimasu",
+        kana: "お先に失礼します",
+        explanation: "Polite way to say you're leaving before others.",
+        example: "Osaki ni shitsureishimasu. (Excuse me for leaving first.)",
+        keyVocab: []
+    },
+    {
+        english: "Good morning",
+        romaji: "ohayou gozaimasu",
+        kana: "おはようございます",
+        explanation: "Morning greeting.",
+        example: "Ohayou gozaimasu. (Good morning.)",
+        keyVocab: []
+    },
+    {
+        english: "Sorry / Excuse me",
+        romaji: "sumimasen",
+        kana: "すみません",
+        explanation: "Used to apologize or get attention.",
+        example: "Sumimasen, koko wa doko desu ka? (Excuse me, where is this place?)",
+        keyVocab: ["doko - where"]
+    },
+    {
+        english: "Thank you",
+        romaji: "arigatou gozaimasu",
+        kana: "ありがとうございます",
+        explanation: "Polite way to say thank you.",
+        example: "Arigatou gozaimasu. (Thank you.)",
+        keyVocab: []
+    },
+    {
+        english: "You're welcome",
+        romaji: "dou itashimashite",
+        kana: "どういたしまして",
+        explanation: "Response to thank you.",
+        example: "Arigatou gozaimasu. Dou itashimashite. (Thank you. You're welcome.)",
+        keyVocab: []
+    },
+    {
+        english: "Yes",
+        romaji: "hai",
+        kana: "はい",
+        explanation: "Affirmative response.",
+        example: "Hai, sou desu. (Yes, that's right.)",
+        keyVocab: ["sou - so", "desu - is"]
+    },
+    {
+        english: "No",
+        romaji: "iie",
+        kana: "いいえ",
+        explanation: "Negative response.",
+        example: "Iie, chigaimasu. (No, that's wrong.)",
+        keyVocab: ["chigaimasu - is wrong"]
+    },
+    {
+        english: "Excuse me / Hello (to get attention)",
+        romaji: "shitsureishimasu",
+        kana: "失礼します",
+        explanation: "Polite way to excuse oneself or get attention.",
+        example: "Shitsureishimasu. (Excuse me.)",
+        keyVocab: []
+    },
+    {
+        english: "Goodbye",
+        romaji: "sayonara",
+        kana: "さようなら",
+        explanation: "Formal farewell.",
+        example: "Sayonara. (Goodbye.)",
+        keyVocab: []
+    },
+    {
+        english: "See you later",
+        romaji: "ja ne / mata ne",
+        kana: "じゃね / またね",
+        explanation: "Casual way to say see you later.",
+        example: "Ja ne. (See you later.)",
+        keyVocab: []
+    },
+    {
+        english: "How are you?",
+        romaji: "ogenki desu ka?",
+        kana: "お元気ですか？",
+        explanation: "Polite way to ask how someone is.",
+        example: "Ogenki desu ka? (How are you?)",
+        keyVocab: ["ogenki - well"]
+    },
+    {
+        english: "I'm fine",
+        romaji: "genki desu",
+        kana: "元気です",
+        explanation: "Response meaning I'm well.",
+        example: "Genki desu. (I'm fine.)",
+        keyVocab: []
+    },
+    {
+        english: "I don't understand",
+        romaji: "wakarimasen",
+        kana: "わかりません",
+        explanation: "Used when you don't comprehend something.",
+        example: "Wakarimasen. (I don't understand.)",
+        keyVocab: []
+    },
+    {
+        english: "Please",
+        romaji: "onegaishimasu",
+        kana: "お願いします",
+        explanation: "Polite request.",
+        example: "Onegaishimasu. (Please.)",
+        keyVocab: []
+    },
+    {
+        english: "Delicious",
+        romaji: "oishii",
+        kana: "おいしい",
+        explanation: "Used to describe tasty food.",
+        example: "Oishii desu. (It's delicious.)",
+        keyVocab: []
     }
 ];
 
-// Days of Month Data (sample, can be expanded)
+// Days of Month Data
 const daysofmonthData = [
     {
-        english: "1st",
+        english: "1日",
         romaji: "tsuitachi",
         kana: "ついたち",
         explanation: "The first day of the month.",
@@ -311,15 +543,245 @@ const daysofmonthData = [
         keyVocab: ["shinbun - newspaper", "yomimasu - read"]
     },
     {
-        english: "2nd",
+        english: "2日",
         romaji: "futsuka",
         kana: "ふつか",
-        explanation: "The second day.",
+        explanation: "The second day of the month.",
         example: "Futsuka wa tomodachi to au. (I meet friends on the 2nd.)",
         keyVocab: ["tomodachi - friend", "au - meet"]
     },
-    // Add more as needed, following the pattern
-
+    {
+        english: "3日",
+        romaji: "mikka",
+        kana: "みっか",
+        explanation: "The third day of the month.",
+        example: "Mikka ni wa resutoran ni ikimasu. (I go to a restaurant on the 3rd.)",
+        keyVocab: ["resutoran - restaurant", "ikimasu - go"]
+    },
+    {
+        english: "4日",
+        romaji: "yokka",
+        kana: "よっか",
+        explanation: "The fourth day of the month.",
+        example: "Yokka wa tenki ga yoi desu. (The weather is good on the 4th.)",
+        keyVocab: ["tenki - weather", "yoi - good"]
+    },
+    {
+        english: "5日",
+        romaji: "itsuka",
+        kana: "いつか",
+        explanation: "The fifth day of the month.",
+        example: "Itsuka ni wa ongaku o kikimasu. (I listen to music on the 5th.)",
+        keyVocab: ["ongaku - music", "kikimasu - listen"]
+    },
+    {
+        english: "6日",
+        romaji: "muika",
+        kana: "むいか",
+        explanation: "The sixth day of the month.",
+        example: "Muika wa yasumi desu. (The 6th is a day off.)",
+        keyVocab: ["yasumi - day off"]
+    },
+    {
+        english: "7日",
+        romaji: "nanoka",
+        kana: "なのか",
+        explanation: "The seventh day of the month.",
+        example: "Nanoka ni wa toshokan ni ikimasu. (I go to the library on the 7th.)",
+        keyVocab: ["toshokan - library", "ikimasu - go"]
+    },
+    {
+        english: "8日",
+        romaji: "youka",
+        kana: "ようか",
+        explanation: "The eighth day of the month.",
+        example: "Youka wa atsui desu. (The 8th is hot.)",
+        keyVocab: ["atsui - hot"]
+    },
+    {
+        english: "9日",
+        romaji: "kokonoka",
+        kana: "ここのか",
+        explanation: "The ninth day of the month.",
+        example: "Kokonoka ni wa eiga o mimasu. (I watch a movie on the 9th.)",
+        keyVocab: ["eiga - movie", "mimasu - watch"]
+    },
+    {
+        english: "10日",
+        romaji: "touka",
+        kana: "とうか",
+        explanation: "The tenth day of the month.",
+        example: "Touka wa samui desu. (The 10th is cold.)",
+        keyVocab: ["samui - cold"]
+    },
+    {
+        english: "11日",
+        romaji: "juuichi nichi",
+        kana: "じゅういちにち",
+        explanation: "The 11th day of the month.",
+        example: "Juuichi nichi ni wa kaigi ga arimasu. (There is a meeting on the 11th.)",
+        keyVocab: ["kaigi - meeting", "arimasu - there is"]
+    },
+    {
+        english: "12日",
+        romaji: "juuni nichi",
+        kana: "じゅうににち",
+        explanation: "The 12th day of the month.",
+        example: "Juuni nichi wa ame ga furimasu. (It rains on the 12th.)",
+        keyVocab: ["ame - rain", "furimasu - falls"]
+    },
+    {
+        english: "13日",
+        romaji: "juusan nichi",
+        kana: "じゅうさんにち",
+        explanation: "The 13th day of the month.",
+        example: "Juusan nichi ni wa benkyou shimasu. (I study on the 13th.)",
+        keyVocab: ["benkyou - study", "shimasu - do"]
+    },
+    {
+        english: "14日",
+        romaji: "juuyon nichi",
+        kana: "じゅうよんにち",
+        explanation: "The 14th day of the month.",
+        example: "Juuyon nichi wa tanjoubi desu. (The 14th is a birthday.)",
+        keyVocab: ["tanjoubi - birthday"]
+    },
+    {
+        english: "15日",
+        romaji: "juugo nichi",
+        kana: "じゅうごにち",
+        explanation: "The 15th day of the month.",
+        example: "Juugo nichi ni wa uta o utaimasu. (I sing a song on the 15th.)",
+        keyVocab: ["uta - song", "utaimasu - sing"]
+    },
+    {
+        english: "16日",
+        romaji: "juuroku nichi",
+        kana: "じゅうろくにち",
+        explanation: "The 16th day of the month.",
+        example: "Juuroku nichi wa hare desu. (The 16th is sunny.)",
+        keyVocab: ["hare - sunny"]
+    },
+    {
+        english: "17日",
+        romaji: "juushichi nichi",
+        kana: "じゅうしちにち",
+        explanation: "The 17th day of the month.",
+        example: "Juushichi nichi ni wa ryokou shimasu. (I travel on the 17th.)",
+        keyVocab: ["ryokou - travel", "shimasu - do"]
+    },
+    {
+        english: "18日",
+        romaji: "juuhachi nichi",
+        kana: "じゅうはちにち",
+        explanation: "The 18th day of the month.",
+        example: "Juuhachi nichi wa kumo ga arimasu. (There are clouds on the 18th.)",
+        keyVocab: ["kumo - cloud", "arimasu - there is"]
+    },
+    {
+        english: "19日",
+        romaji: "juukyuu nichi",
+        kana: "じゅうきゅうにち",
+        explanation: "The 19th day of the month.",
+        example: "Juukyuu nichi ni wa shokuji o tabemasu. (I eat a meal on the 19th.)",
+        keyVocab: ["shokuji - meal", "tabemasu - eat"]
+    },
+    {
+        english: "20日",
+        romaji: "nijuu nichi",
+        kana: "にじゅうにち",
+        explanation: "The 20th day of the month.",
+        example: "Nijuu nichi wa atsui desu. (The 20th is hot.)",
+        keyVocab: ["atsui - hot"]
+    },
+    {
+        english: "21日",
+        romaji: "nijuuichi nichi",
+        kana: "にじゅういちにち",
+        explanation: "The 21st day of the month.",
+        example: "Nijuuichi nichi ni wa terebi o mimasu. (I watch TV on the 21st.)",
+        keyVocab: ["terebi - TV", "mimasu - watch"]
+    },
+    {
+        english: "22日",
+        romaji: "nijuuni nichi",
+        kana: "にじゅうににち",
+        explanation: "The 22nd day of the month.",
+        example: "Nijuuni nichi wa samui desu. (The 22nd is cold.)",
+        keyVocab: ["samui - cold"]
+    },
+    {
+        english: "23日",
+        romaji: "nijuusan nichi",
+        kana: "にじゅうさんにち",
+        explanation: "The 23rd day of the month.",
+        example: "Nijuusan nichi ni wa ongaku o kikimasu. (I listen to music on the 23rd.)",
+        keyVocab: ["ongaku - music", "kikimasu - listen"]
+    },
+    {
+        english: "24日",
+        romaji: "nijuuyon nichi",
+        kana: "にじゅうよんにち",
+        explanation: "The 24th day of the month.",
+        example: "Nijuuyon nichi wa hare desu. (The 24th is sunny.)",
+        keyVocab: ["hare - sunny"]
+    },
+    {
+        english: "25日",
+        romaji: "nijuugo nichi",
+        kana: "にじゅうごにち",
+        explanation: "The 25th day of the month.",
+        example: "Nijuugo nichi ni wa tomodachi to au. (I meet friends on the 25th.)",
+        keyVocab: ["tomodachi - friend", "au - meet"]
+    },
+    {
+        english: "26日",
+        romaji: "nijuuroku nichi",
+        kana: "にじゅうろくにち",
+        explanation: "The 26th day of the month.",
+        example: "Nijuuroku nichi wa ame ga furimasu. (It rains on the 26th.)",
+        keyVocab: ["ame - rain", "furimasu - falls"]
+    },
+    {
+        english: "27日",
+        romaji: "nijuushichi nichi",
+        kana: "にじゅうしちにち",
+        explanation: "The 27th day of the month.",
+        example: "Nijuushichi nichi ni wa benkyou shimasu. (I study on the 27th.)",
+        keyVocab: ["benkyou - study", "shimasu - do"]
+    },
+    {
+        english: "28日",
+        romaji: "nijuuhachi nichi",
+        kana: "にじゅうはちにち",
+        explanation: "The 28th day of the month.",
+        example: "Nijuuhachi nichi wa kumo ga arimasu. (There are clouds on the 28th.)",
+        keyVocab: ["kumo - cloud", "arimasu - there is"]
+    },
+    {
+        english: "29日",
+        romaji: "nijuukyuu nichi",
+        kana: "にじゅうきゅうにち",
+        explanation: "The 29th day of the month.",
+        example: "Nijuukyuu nichi ni wa shokuji o tabemasu. (I eat a meal on the 29th.)",
+        keyVocab: ["shokuji - meal", "tabemasu - eat"]
+    },
+    {
+        english: "30日",
+        romaji: "sanjuu nichi",
+        kana: "さんじゅうにち",
+        explanation: "The 30th day of the month.",
+        example: "Sanjuu nichi wa atsui desu. (The 30th is hot.)",
+        keyVocab: ["atsui - hot"]
+    },
+    {
+        english: "31日",
+        romaji: "sanjuuichi nichi",
+        kana: "さんじゅういちにち",
+        explanation: "The 31st day of the month.",
+        example: "Sanjuuichi nichi ni wa yasumi desu. (The 31st is a day off.)",
+        keyVocab: ["yasumi - day off"]
+    }
 ];
 
 // Helper for numbers
@@ -413,6 +875,66 @@ function generateNumbersData() {
 // Numbers Data (1 to 1000)
 const numbersData = generateNumbersData();
 
+// Self Introduction Data
+const selfIntroductionData = [
+    {
+        english: "My name is",
+        romaji: "watashi no namae wa ___ desu",
+        kana: "わたしの名前は ___ です",
+        explanation: "This phrase is used to introduce your name in Japanese.",
+        example: "Watashi no namae wa Tanaka desu. (My name is Tanaka.)",
+        keyVocab: ["watashi - I", "namae - name", "desu - is/am/are"]
+    },
+    {
+        english: "My birthday is",
+        romaji: "watashi no tanjoubi wa ___ desu",
+        kana: "わたしの誕生日は ___ です",
+        explanation: "This phrase is used to state your birthday.",
+        example: "Watashi no tanjoubi wa ichi gatsu juu nichi desu. (My birthday is January 10th.)",
+        keyVocab: ["tanjoubi - birthday", "desu - is/am/are"]
+    },
+    {
+        english: "I’m ___ years old",
+        romaji: "watashi wa ___ sai desu",
+        kana: "わたしは ___ さいです",
+        explanation: "This phrase is used to state your age.",
+        example: "Watashi wa nijuu sai desu. (I am 20 years old.)",
+        keyVocab: ["watashi - I", "sai - years old", "desu - is/am/are"]
+    },
+    {
+        english: "I live in",
+        romaji: "watashi wa ___ ni sunde imasu",
+        kana: "わたしは ___ に住んでいます",
+        explanation: "This phrase is used to state where you live.",
+        example: "Watashi wa Toukyou ni sunde imasu. (I live in Tokyo.)",
+        keyVocab: ["watashi - I", "ni - in/at", "sunde imasu - live"]
+    },
+    {
+        english: "My hobby is",
+        romaji: "watashi no shumi wa ___ suru koto desu",
+        kana: "わたしの趣味は ___ することです",
+        explanation: "This phrase is used to state your hobby.",
+        example: "Watashi no shumi wa ongaku o kiku koto desu. (My hobby is listening to music.)",
+        keyVocab: ["shumi - hobby", "suru koto desu - doing"]
+    },
+    {
+        english: "My work is",
+        romaji: "watashi wa ___ desu",
+        kana: "わたしは ___ です",
+        explanation: "This phrase is used to state your occupation.",
+        example: "Watashi wa gakusei desu. (I am a student.)",
+        keyVocab: ["watashi - I", "desu - is/am/are"]
+    },
+    {
+        english: "My dream is",
+        romaji: "watashi no yume wa ___ ni naritai desu",
+        kana: "わたしの夢は ___ になりたいです",
+        explanation: "This phrase is used to state your dream or aspiration.",
+        example: "Watashi no yume wa isha ni naritai desu. (My dream is to become a doctor.)",
+        keyVocab: ["yume - dream", "naru - become", "desu - is/am/are"]
+    }
+];
+
 // Current data based on page
 let currentData = [];
 
@@ -423,18 +945,21 @@ document.addEventListener('DOMContentLoaded', function() {
     if (path.includes('months')) {
         currentData = monthsData;
         document.getElementById('pageTitle').textContent = 'Months Reviewer';
+    } else if (path.includes('daysofmonth')) {
+        currentData = daysofmonthData;
+        document.getElementById('pageTitle').textContent = 'Days of the Month Reviewer';
     } else if (path.includes('days')) {
         currentData = daysData;
         document.getElementById('pageTitle').textContent = 'Days Reviewer';
     } else if (path.includes('greetings')) {
         currentData = greetingsData;
         document.getElementById('pageTitle').textContent = 'Greetings Reviewer';
-    } else if (path.includes('daysofmonth')) {
-        currentData = daysofmonthData;
-        document.getElementById('pageTitle').textContent = 'Days of the Month Reviewer';
     } else if (path.includes('numbers')) {
         currentData = numbersData;
         document.getElementById('pageTitle').textContent = 'Numbers Reviewer';
+    } else if (path.toLowerCase().includes('selfintroduction')) {
+        currentData = selfIntroductionData;
+        document.getElementById('pageTitle').textContent = 'SELF INTRODUCTION Reviewer';
     }
 
     // Populate category dropdown
@@ -482,8 +1007,8 @@ function displayLessons(data) {
     container.innerHTML = data.map(item => `
         <div class="lesson-card">
             <h3>${item.english}</h3>
-            <p class="romaji">${item.romaji}</p>
             <p class="kana">${item.kana}</p>
+            <p class="romaji">${item.romaji}</p>
             <p class="explanation">${item.explanation}</p>
             <div class="example">
                 <strong>Example:</strong> ${item.example}
